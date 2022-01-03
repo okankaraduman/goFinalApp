@@ -5,9 +5,9 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/Valdym/goFinalApp/internal/entity"
-	"github.com/Valdym/goFinalApp/internal/usecase"
-	"github.com/Valdym/goFinalApp/pkg/logger"
+	"github.com/okankaraduman/goFinalApp/internal/entity"
+	"github.com/okankaraduman/goFinalApp/internal/usecase"
+	"github.com/okankaraduman/goFinalApp/pkg/logger"
 )
 
 type translationRoutes struct {

@@ -10,9 +10,9 @@ import (
 	ginSwagger "github.com/swaggo/gin-swagger"
 
 	// Swagger docs.
-	_ "github.com/Valdym/goFinalApp/docs"
-	"github.com/Valdym/goFinalApp/internal/usecase"
-	"github.com/Valdym/goFinalApp/pkg/logger"
+	_ "github.com/okankaraduman/goFinalApp/docs"
+	"github.com/okankaraduman/goFinalApp/internal/usecase"
+	"github.com/okankaraduman/goFinalApp/pkg/logger"
 )
 
 // NewRouter -.

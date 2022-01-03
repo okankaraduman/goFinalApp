@@ -5,7 +5,7 @@ import (
 
 	translator "github.com/Conight/go-googletrans"
 
-	"github.com/Valdym/goFinalApp/internal/entity"
+	"github.com/okankaraduman/goFinalApp/internal/entity"
 )
 
 // TranslationWebAPI -.

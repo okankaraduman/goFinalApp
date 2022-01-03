@@ -3,8 +3,8 @@ package main
 import (
 	"log"
 
-	"github.com/Valdym/goFinalApp/config"
-	"github.com/Valdym/goFinalApp/internal/app"
+	"github.com/okankaraduman/goFinalApp/config"
+	"github.com/okankaraduman/goFinalApp/internal/app"
 )
 
 func main() {

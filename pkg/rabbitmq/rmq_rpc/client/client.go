@@ -10,7 +10,7 @@ import (
 	"github.com/google/uuid"
 	"github.com/streadway/amqp"
 
-	rmqrpc "github.com/Valdym/goFinalApp/pkg/rabbitmq/rmq_rpc"
+	rmqrpc "github.com/okankaraduman/goFinalApp/pkg/rabbitmq/rmq_rpc"
 )
 
 // ErrConnectionClosed -.

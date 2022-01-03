@@ -9,16 +9,16 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/Valdym/goFinalApp/config"
-	amqprpc "github.com/Valdym/goFinalApp/internal/controller/amqp_rpc"
-	v1 "github.com/Valdym/goFinalApp/internal/controller/http/v1"
-	"github.com/Valdym/goFinalApp/internal/usecase"
-	"github.com/Valdym/goFinalApp/internal/usecase/repo"
-	"github.com/Valdym/goFinalApp/internal/usecase/webapi"
-	"github.com/Valdym/goFinalApp/pkg/httpserver"
-	"github.com/Valdym/goFinalApp/pkg/logger"
-	"github.com/Valdym/goFinalApp/pkg/postgres"
-	"github.com/Valdym/goFinalApp/pkg/rabbitmq/rmq_rpc/server"
+	"github.com/okankaraduman/goFinalApp/config"
+	amqprpc "github.com/okankaraduman/goFinalApp/internal/controller/amqp_rpc"
+	v1 "github.com/okankaraduman/goFinalApp/internal/controller/http/v1"
+	"github.com/okankaraduman/goFinalApp/internal/usecase"
+	"github.com/okankaraduman/goFinalApp/internal/usecase/repo"
+	"github.com/okankaraduman/goFinalApp/internal/usecase/webapi"
+	"github.com/okankaraduman/goFinalApp/pkg/httpserver"
+	"github.com/okankaraduman/goFinalApp/pkg/logger"
+	"github.com/okankaraduman/goFinalApp/pkg/postgres"
+	"github.com/okankaraduman/goFinalApp/pkg/rabbitmq/rmq_rpc/server"
 )
 
 // Run creates objects via constructors.

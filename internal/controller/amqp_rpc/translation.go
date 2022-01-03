@@ -6,9 +6,9 @@ import (
 
 	"github.com/streadway/amqp"
 
-	"github.com/Valdym/goFinalApp/internal/entity"
-	"github.com/Valdym/goFinalApp/internal/usecase"
-	"github.com/Valdym/goFinalApp/pkg/rabbitmq/rmq_rpc/server"
+	"github.com/okankaraduman/goFinalApp/internal/entity"
+	"github.com/okankaraduman/goFinalApp/internal/usecase"
+	"github.com/okankaraduman/goFinalApp/pkg/rabbitmq/rmq_rpc/server"
 )
 
 type translationRoutes struct {

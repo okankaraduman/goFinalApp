@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/Valdym/goFinalApp/internal/entity"
+	"github.com/okankaraduman/goFinalApp/internal/entity"
 )
 
 // TranslationUseCase -.

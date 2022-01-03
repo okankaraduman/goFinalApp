@@ -7,8 +7,8 @@ import (
 
 	"github.com/streadway/amqp"
 
-	"github.com/Valdym/goFinalApp/pkg/logger"
-	rmqrpc "github.com/Valdym/goFinalApp/pkg/rabbitmq/rmq_rpc"
+	"github.com/okankaraduman/goFinalApp/pkg/logger"
+	rmqrpc "github.com/okankaraduman/goFinalApp/pkg/rabbitmq/rmq_rpc"
 )
 
 const (

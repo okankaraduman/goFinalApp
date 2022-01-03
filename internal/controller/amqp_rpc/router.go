@@ -1,8 +1,8 @@
 package amqprpc
 
 import (
-	"github.com/Valdym/goFinalApp/internal/usecase"
-	"github.com/Valdym/goFinalApp/pkg/rabbitmq/rmq_rpc/server"
+	"github.com/okankaraduman/goFinalApp/internal/usecase"
+	"github.com/okankaraduman/goFinalApp/pkg/rabbitmq/rmq_rpc/server"
 )
 
 // NewRouter -.

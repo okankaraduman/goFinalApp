@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/Valdym/goFinalApp/internal/entity"
-	"github.com/Valdym/goFinalApp/pkg/postgres"
+	"github.com/okankaraduman/goFinalApp/internal/entity"
+	"github.com/okankaraduman/goFinalApp/pkg/postgres"
 )
 
 const _defaultEntityCap = 64
