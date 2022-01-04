@@ -7,8 +7,8 @@ import (
 	"os/signal"
 	"syscall"
 
-	v1 "github.com/Valdym/goFinalApp/internal/controller/http/v1"
 	"github.com/go-chi/chi/v5"
+	v1 "github.com/okankaraduman/goFinalApp/internal/controller/http/v1"
 
 	"github.com/okankaraduman/goFinalApp/config"
 	"github.com/okankaraduman/goFinalApp/pkg/httpserver"
@@ -45,7 +45,7 @@ func Run(cfg *config.Config) {
 
 	//**********************Change here to use net/http**********
 	r := chi.NewRouter()
-	v1.NewRouter(r)
+	v1.NewRouter(r, l)
 	httpServer := httpserver.New(r, httpserver.Port(cfg.HTTP.Port))
 
 	// Waiting signal
@@ -57,8 +57,8 @@ func Run(cfg *config.Config) {
 		l.Info("app - Run - signal: " + s.String())
 	case err = <-httpServer.Notify():
 		l.Error(fmt.Errorf("app - Run - httpServer.Notify: %w", err))
-	case err = <-rmqServer.Notify():
-		l.Error(fmt.Errorf("app - Run - rmqServer.Notify: %w", err))
+		//case err = <-rmqServer.Notify():
+		//	l.Error(fmt.Errorf("app - Run - rmqServer.Notify: %w", err))
 	}
 
 	// Shutdown
