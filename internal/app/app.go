@@ -7,18 +7,13 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/gin-gonic/gin"
+	v1 "github.com/Valdym/goFinalApp/internal/controller/http/v1"
+	"github.com/go-chi/chi/v5"
 
 	"github.com/okankaraduman/goFinalApp/config"
-	amqprpc "github.com/okankaraduman/goFinalApp/internal/controller/amqp_rpc"
-	v1 "github.com/okankaraduman/goFinalApp/internal/controller/http/v1"
-	"github.com/okankaraduman/goFinalApp/internal/usecase"
-	"github.com/okankaraduman/goFinalApp/internal/usecase/repo"
-	"github.com/okankaraduman/goFinalApp/internal/usecase/webapi"
 	"github.com/okankaraduman/goFinalApp/pkg/httpserver"
 	"github.com/okankaraduman/goFinalApp/pkg/logger"
 	"github.com/okankaraduman/goFinalApp/pkg/postgres"
-	"github.com/okankaraduman/goFinalApp/pkg/rabbitmq/rmq_rpc/server"
 )
 
 // Run creates objects via constructors.
@@ -33,26 +28,25 @@ func Run(cfg *config.Config) {
 	defer pg.Close()
 
 	// Use case
-	translationUseCase := usecase.New(
-		repo.New(pg),
-		webapi.New(),
-	)
+	//translationUseCase := usecase.New(
+	//	repo.New(pg),
+	//	webapi.New(),
+	//)
 
 	// RabbitMQ RPC Server
-	rmqRouter := amqprpc.NewRouter(translationUseCase)
+	//rmqRouter := amqprpc.NewRouter(translationUseCase)
 
-	rmqServer, err := server.New(cfg.RMQ.URL, cfg.RMQ.ServerExchange, rmqRouter, l)
-	if err != nil {
-		l.Fatal(fmt.Errorf("app - Run - rmqServer - server.New: %w", err))
-	}
+	//rmqServer, err := server.New(cfg.RMQ.URL, cfg.RMQ.ServerExchange, rmqRouter, l)
+	//if err != nil {
+	//	l.Fatal(fmt.Errorf("app - Run - rmqServer - server.New: %w", err))
+	//}
 
 	// HTTP Server
 
 	//**********************Change here to use net/http**********
-
-	handler := gin.New()
-	v1.NewRouter(handler, l, translationUseCase)
-	httpServer := httpserver.New(handler, httpserver.Port(cfg.HTTP.Port))
+	r := chi.NewRouter()
+	v1.NewRouter(r)
+	httpServer := httpserver.New(r, httpserver.Port(cfg.HTTP.Port))
 
 	// Waiting signal
 	interrupt := make(chan os.Signal, 1)
@@ -73,8 +67,8 @@ func Run(cfg *config.Config) {
 		l.Error(fmt.Errorf("app - Run - httpServer.Shutdown: %w", err))
 	}
 
-	err = rmqServer.Shutdown()
-	if err != nil {
-		l.Error(fmt.Errorf("app - Run - rmqServer.Shutdown: %w", err))
-	}
+	//err = rmqServer.Shutdown()
+	//if err != nil {
+	//	l.Error(fmt.Errorf("app - Run - rmqServer.Shutdown: %w", err))
+	//}
 }

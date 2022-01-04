@@ -45,3 +45,4 @@ To demonstrate this I'll use this [tool](https://threedots.tech/post/auto-genera
 ## 5. Usage Guide </a>
 ## 6. Development Notes </a>
 - I'll not use any comments unless I think the code can unexpectedly behaves. Code needs to explain itself.
+- It is assumed that default values are in yaml, and security-sensitive variables are defined in ENV.
