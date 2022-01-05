@@ -3,7 +3,7 @@
 
 // Package usecase_test is a generated GoMock package.
 package usecase_test
-
+/*
 import (
 	context "context"
 	reflect "reflect"
@@ -154,3 +154,4 @@ func (mr *MockTranslationWebAPIMockRecorder) Translate(arg0 interface{}) *gomock
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Translate", reflect.TypeOf((*MockTranslationWebAPI)(nil).Translate), arg0)
 }
+*/

@@ -2,6 +2,7 @@
 package v1
 
 import (
+	"fmt"
 	"net/http"
 	"time"
 
@@ -20,13 +21,15 @@ import (
 
 // NewRouter -.
 // Swagger spec:
-// @title       Go Clean Template
-// @description Using a translation service as an example
+// @title       Go Order App
+// @description Creates an
 // @version     1.0
 // @host        localhost:8080
 // @BasePath    /v1
 func NewRouter(muxChi *chi.Mux, l logger.Interface) {
 
+	fs := http.FileServer(http.Dir("./././static"))
+	fmt.Println(http.Dir("../../static"))
 	// A good base middleware stack
 	muxChi.Use(middleware.RequestID)
 	muxChi.Use(middleware.RealIP)
@@ -38,18 +41,27 @@ func NewRouter(muxChi *chi.Mux, l logger.Interface) {
 	// processing should be stopped.
 	muxChi.Use(middleware.Timeout(60 * time.Second))
 
+	//Fileserver
+
+	muxChi.Handle("/", addHeaders(fs))
+
 	// Swagger
 	swaggerHandler := httpSwagger.Handler()
 
-	muxChi.Get("/swagger/*any", swaggerHandler)
+	muxChi.Get("/swagger/*", swaggerHandler)
 
 	// K8s probe
 	muxChi.Get("/healthz", func(w http.ResponseWriter, r *http.Request) {
 		resp := Response{Resp: w}
-		resp.Text(http.StatusOK, "404 Not Found", "text/plain")
+		resp.Text(http.StatusOK, "200 OK", "text/plain")
 	})
 	// Prometheus metrics
-	muxChi.Get("/metrics", func(w http.ResponseWriter, r *http.Request) {
-		promhttp.Handler()
-	})
+	muxChi.Handle("/metrics", promhttp.Handler())
+}
+
+func addHeaders(fs http.Handler) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Add("X-Frame-Options", "DENY")
+		fs.ServeHTTP(w, r)
+	}
 }

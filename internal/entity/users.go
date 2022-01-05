@@ -3,3 +3,11 @@
 package entity
 
 //Models!
+
+// User holds a user's data.
+type User struct {
+	Username string
+	Email    string
+	FullName string
+	Password string
+}

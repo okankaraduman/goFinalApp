@@ -1,6 +1,7 @@
 // Package usecase implements application business logic. Each logic group in own file.
 package usecase
 
+/*
 import (
 	"context"
 
@@ -27,3 +28,4 @@ type (
 		Translate(entity.Translation) (entity.Translation, error)
 	}
 )
+*/

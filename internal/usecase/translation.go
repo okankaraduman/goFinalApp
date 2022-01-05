@@ -1,5 +1,6 @@
 package usecase
 
+/*
 import (
 	"context"
 	"fmt"
@@ -45,3 +46,4 @@ func (uc *TranslationUseCase) Translate(ctx context.Context, t entity.Translatio
 
 	return translation, nil
 }
+*/
