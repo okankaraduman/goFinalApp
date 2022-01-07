@@ -1,18 +1,29 @@
 // Package usecase implements application business logic. Each logic group in own file.
 package usecase
 
+import (
+	"context"
+
+	"github.com/okankaraduman/goFinalApp/internal/entity"
+)
+
 //go:generate mockgen -source=interfaces.go -destination=./mocks_test.go -package=usecase_test
 
 type (
-	// Translation -.
-	Auth interface {
+	// Comment -.
+	Comment interface {
+		CreateReview(request entity.CreateReviewRequest) (*entity.ReviewDTO, error)
+		//Web API'nin içindeki fonksiyonlar
 	}
 
-	// TranslationRepo -.
-	AuthRepo interface {
+	// CommentRepo -.
+	CommentRepo interface {
+		InsertReview(context.Context, entity.Review) error
+		//reponun içindelileri
 	}
 
-	// TranslationWebAPI -.
-	AuthWebAPI interface {
+	// CommentWebAPI -.
+	CommentWebAPI interface {
+		//Web API'nin içindeki fonksiyonlar
 	}
 )

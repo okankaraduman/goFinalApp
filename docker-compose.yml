@@ -7,11 +7,20 @@ services:
     volumes:
       - pg-data:/var/lib/postgresql/data
     environment:
-      POSTGRES_USER: 'user'
-      POSTGRES_PASSWORD: 'pass'
+      POSTGRES_USER: 'okan'
+      POSTGRES_PASSWORD: 'okan1905'
       POSTGRES_DB: 'postgres'
     ports:
       - 5432:5432
+  pgadmin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "5050:80"
 
   rabbitmq:
     container_name: rabbitmq

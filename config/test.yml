@@ -1,5 +1,5 @@
 app:
-  name: 'go-order-app'
+  name: 'go-comment-api'
   version: '1.0.0'
 
 http:
@@ -7,9 +7,10 @@ http:
 
 logger:
   log_level: 'debug'
-  rollbar_env: 'go-order-app'
+  rollbar_env: 'go-comment-api'
 
 postgres:
+  URL: 'postgres://okan:okan1905@localhost:5432/postgres'
   pool_max: 2
 
 rabbitmq:

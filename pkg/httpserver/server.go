@@ -50,6 +50,7 @@ func (s *Server) start() {
 	go func() {
 		s.notify <- s.server.ListenAndServe()
 		close(s.notify)
+
 	}()
 }
 

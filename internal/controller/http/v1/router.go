@@ -27,7 +27,7 @@ import (
 // @version     0.1
 // @host        localhost:8080
 // @BasePath    /v1
-func NewRouter(muxChi *chi.Mux, l logger.Interface, a usecase.Auth) {
+func NewRouter(muxChi *chi.Mux, l logger.Interface, c usecase.Comment) {
 
 	fs := http.FileServer(http.Dir("./././static"))
 
@@ -62,7 +62,7 @@ func NewRouter(muxChi *chi.Mux, l logger.Interface, a usecase.Auth) {
 	// API version 1.
 	muxChi.Route("/v1", func(r chi.Router) {
 		r.Use(apiVersionCtx("v1"))
-		r.Mount("/articles", newAuthRoutes(a, l))
+		r.Mount("/comments", newCommentRoutes(c, l))
 	})
 }
 

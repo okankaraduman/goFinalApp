@@ -35,7 +35,7 @@ type (
 	// PG -.
 	PG struct {
 		PoolMax int    `env-required:"true" yaml:"pool_max" env:"PG_POOL_MAX"`
-		URL     string `env-required:"true"                 env:"PG_URL"`
+		URL     string `env-required:"true" yaml:"URL"      env:"PG_URL"`
 	}
 
 	// RMQ -.
@@ -50,7 +50,7 @@ type (
 func NewConfig() (*Config, error) {
 	cfg := &Config{}
 
-	err := cleanenv.ReadConfig("./config/test.yml", cfg)
+	err := cleanenv.ReadConfig("./test.yml", cfg)
 	if err != nil {
 		return nil, fmt.Errorf("config error: %w", err)
 	}

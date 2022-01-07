@@ -6,19 +6,16 @@ import (
 	"github.com/okankaraduman/goFinalApp/pkg/rabbitmq/rmq_rpc/server"
 )
 
-type authRoutes struct {
-	authUseCase usecase.Auth
+type commentRoutes struct {
+	commentUseCase usecase.Comment
 }
 
-func newTranslationRoutes(routes map[string]server.CallHandler, t usecase.Auth) {
-	r := &authRoutes{t}
-	{
-		routes["getHistory"] = r.he()
-	}
+func newCommentRoutes(routes map[string]server.CallHandler, t usecase.Comment) {
+	//
 }
 
-type historyResponse struct {
-	History []entity.User `json:"history"`
+type commentResponse struct {
+	Reviews []entity.Review `json:"review"`
 }
 
 /*
