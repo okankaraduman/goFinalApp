@@ -13,7 +13,7 @@ type (
 	// Comment -.
 	Comment interface {
 		CreateReview(request entity.CreateReviewRequest) (*entity.ReviewDTO, error)
-		//Web API'nin içindeki fonksiyonlar
+		
 	}
 
 	// CommentRepo -.

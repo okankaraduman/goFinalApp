@@ -1,15 +1,7 @@
 package integration_test
 
 import (
-	"log"
-	"net/http"
-	"os"
-	"testing"
-	"time"
-
 	. "github.com/Eun/go-hit"
-
-	"github.com/okankaraduman/goFinalApp/pkg/rabbitmq/rmq_rpc/client"
 )
 
 const (
@@ -28,6 +20,7 @@ const (
 	requests          = 10
 )
 
+/*
 func TestMain(m *testing.M) {
 	err := healthCheck(attempts)
 	if err != nil {
@@ -137,3 +130,4 @@ func TestRMQClientRPC(t *testing.T) {
 		}
 	}
 }
+*/

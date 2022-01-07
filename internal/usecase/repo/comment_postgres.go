@@ -10,7 +10,7 @@ import (
 
 const _defaultEntityCap = 64
 
-// TranslationRepo -.
+// CommentRepo -.
 type CommentRepo struct {
 	*postgres.Postgres
 }
