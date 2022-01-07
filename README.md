@@ -1,12 +1,11 @@
 - [1. Introduction <a name="intr"></a>](#1-introduction-)
 - [2. Important links](#2-important-links)
-- [3. Tech Stack and Architecture </a>](#3-tech-stack-and-architecture-a)
+- [3. Third-party libraries and Architecture </a>](#3-third-party-libraries-and-architecture-a)
   - [3.1. Tech Stack](#31-tech-stack)
   - [3.2. Architecture](#32-architecture)
 - [4. Usage Guide </a>](#4-usage-guide-a)
 - [5. Development Notes </a>](#5-development-notes-a)
 ## 1. Introduction <a name="intr"></a>
-Hosted on: heroku
 
 In this project I aim to build a microservice. 
 This microservice should be extensible, scalable, cloud-native, containerized, well-tested comment micro-service. Project heavily inspired by [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) blog post by Uncle Bob. 
@@ -19,26 +18,29 @@ I tried to use
 patterns while developing code.
 
 I made load test using Jmeter and here the results:
-    result
+    result - will come
 
-Used docker to create docker image and minikube to implement kubernetes-like service in local.
+Used docker to create docker image and minikube to implement kubernetes-like service in local. 
 
 - [Docker](https://docs.docker.com/get-docker/)
 - [kubectl](https://kubernetes.io/docs/tasks/tools/)
 - [minikube](https://minikube.sigs.k8s.io/docs/start/)
 
 ## 2. Important links
-- [Live Application](heroku.com)
-- [Jmeter Test Results](jmeter.com)
-- [Swagger API Documentation](facebook.com)
+- [Live Application](heroku.com) - will come
+- [Jmeter Test Results](jmeter.com) - will come 
+- [Swagger API Documentation](localhost:8080/swagger/index.html) - localhost:8080/swagger/index.html
 
-## 3. Tech Stack and Architecture </a>
+## 3. Third-party libraries and Architecture </a>
 ### 3.1. Tech Stack
   - Database
     - Postgresql
-    - Redis (in-memory)
+      - (Pgx Driver)[https://github.com/jackc/pgx]
+      - (Squirrel -  Squirrel helps you build SQL queries from composable parts: )[https://github.com/Masterminds/squirrel]
   - Swagger Documentation
     - https://github.com/swaggo/swag
+  - Logging
+    - (Zerolog -  Zero Allocation JSON Logger) [https://github.com/rs/zerolog]
 ### 3.2. Architecture
 Clean Architecture
 
