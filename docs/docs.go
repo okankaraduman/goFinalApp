@@ -36,12 +36,12 @@ type swaggerInfo struct {
 
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = swaggerInfo{
-	Version:     "1.0",
+	Version:     "0.1",
 	Host:        "localhost:8080",
 	BasePath:    "/v1",
 	Schemes:     []string{},
 	Title:       "Go Order App",
-	Description: "Creates an",
+	Description: "Creates a new router",
 }
 
 type s struct{}

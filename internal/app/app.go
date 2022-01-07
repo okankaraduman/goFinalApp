@@ -8,9 +8,11 @@ import (
 	"syscall"
 
 	"github.com/go-chi/chi/v5"
-	v1 "github.com/okankaraduman/goFinalApp/internal/controller/http/v1"
-
 	"github.com/okankaraduman/goFinalApp/config"
+	v1 "github.com/okankaraduman/goFinalApp/internal/controller/http/v1"
+	"github.com/okankaraduman/goFinalApp/internal/usecase"
+	"github.com/okankaraduman/goFinalApp/internal/usecase/repo"
+	"github.com/okankaraduman/goFinalApp/internal/usecase/webapi"
 	"github.com/okankaraduman/goFinalApp/pkg/httpserver"
 	"github.com/okankaraduman/goFinalApp/pkg/logger"
 	"github.com/okankaraduman/goFinalApp/pkg/postgres"
@@ -28,13 +30,13 @@ func Run(cfg *config.Config) {
 	defer pg.Close()
 
 	// Use case
-	//translationUseCase := usecase.New(
-	//	repo.New(pg),
-	//	webapi.New(),
-	//)
+	authUseCase := usecase.New(
+		repo.New(pg),
+		webapi.New(),
+	)
 
-	// RabbitMQ RPC Server
-	//rmqRouter := amqprpc.NewRouter(translationUseCase)
+	//RabbitMQ RPC Server
+	rmqRouter := amqprpc.NewRouter(authUseCase)
 
 	//rmqServer, err := server.New(cfg.RMQ.URL, cfg.RMQ.ServerExchange, rmqRouter, l)
 	//if err != nil {
@@ -45,7 +47,7 @@ func Run(cfg *config.Config) {
 
 	//**********************Change here to use net/http**********
 	r := chi.NewRouter()
-	v1.NewRouter(r, l)
+	v1.NewRouter(r, l, authUseCase)
 	httpServer := httpserver.New(r, httpserver.Port(cfg.HTTP.Port))
 
 	// Waiting signal

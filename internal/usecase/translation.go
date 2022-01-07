@@ -1,6 +1,5 @@
 package usecase
 
-/*
 import (
 	"context"
 	"fmt"
@@ -9,14 +8,14 @@ import (
 )
 
 // TranslationUseCase -.
-type TranslationUseCase struct {
-	repo   TranslationRepo
-	webAPI TranslationWebAPI
+type AuthUseCase struct {
+	repo   AuthRepo
+	webAPI AuthWebAPI
 }
 
 // New -.
-func New(r TranslationRepo, w TranslationWebAPI) *TranslationUseCase {
-	return &TranslationUseCase{
+func New(r AuthRepo, w AuthWebAPI) *AuthUseCase {
+	return &AuthUseCase{
 		repo:   r,
 		webAPI: w,
 	}
@@ -46,4 +45,3 @@ func (uc *TranslationUseCase) Translate(ctx context.Context, t entity.Translatio
 
 	return translation, nil
 }
-*/

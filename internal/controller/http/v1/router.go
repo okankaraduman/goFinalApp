@@ -2,7 +2,7 @@
 package v1
 
 import (
-	"fmt"
+	"context"
 	"net/http"
 	"time"
 
@@ -15,6 +15,7 @@ import (
 	// Swagger docs.
 
 	_ "github.com/okankaraduman/goFinalApp/docs"
+	"github.com/okankaraduman/goFinalApp/internal/usecase"
 	_ "github.com/okankaraduman/goFinalApp/internal/usecase"
 	"github.com/okankaraduman/goFinalApp/pkg/logger"
 )
@@ -22,14 +23,14 @@ import (
 // NewRouter -.
 // Swagger spec:
 // @title       Go Order App
-// @description Creates an
-// @version     1.0
+// @description Creates a new router
+// @version     0.1
 // @host        localhost:8080
 // @BasePath    /v1
-func NewRouter(muxChi *chi.Mux, l logger.Interface) {
+func NewRouter(muxChi *chi.Mux, l logger.Interface, a usecase.Auth) {
 
 	fs := http.FileServer(http.Dir("./././static"))
-	fmt.Println(http.Dir("../../static"))
+
 	// A good base middleware stack
 	muxChi.Use(middleware.RequestID)
 	muxChi.Use(middleware.RealIP)
@@ -57,6 +58,21 @@ func NewRouter(muxChi *chi.Mux, l logger.Interface) {
 	})
 	// Prometheus metrics
 	muxChi.Handle("/metrics", promhttp.Handler())
+
+	// API version 1.
+	muxChi.Route("/v1", func(r chi.Router) {
+		r.Use(apiVersionCtx("v1"))
+		r.Mount("/articles", newAuthRoutes(a, l))
+	})
+}
+
+func apiVersionCtx(version string) func(next http.Handler) http.Handler {
+	return func(next http.Handler) http.Handler {
+		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			r = r.WithContext(context.WithValue(r.Context(), "api.version", version))
+			next.ServeHTTP(w, r)
+		})
+	}
 }
 
 func addHeaders(fs http.Handler) http.HandlerFunc {

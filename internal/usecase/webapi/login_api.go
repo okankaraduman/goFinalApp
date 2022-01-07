@@ -4,13 +4,18 @@ import (
 	"errors"
 	"regexp"
 
-	"github.com/okankaraduman/goFinalApp/internal/usecase"
-	"github.com/okankaraduman/goFinalApp/pkg/logger"
+	"github.com/okankaraduman/goFinalApp/internal/entity"
 )
 
-type translationRoutes struct {
-	t usecase.UserRepo
-	l logger.Interface
+type AuthWebAPI struct {
+	okan string
+}
+
+func New() *AuthWebAPI {
+
+	return &AuthWebAPI{
+		okan: "sdadsa",
+	}
 }
 
 // Regular expressions.
@@ -21,7 +26,7 @@ var (
 )
 
 // ValidateUser validates a user data and returns validation errors.
-func ValidateUser(user *User) []error {
+func ValidateUser(user *entity.User) []error {
 	errs := make([]error, 0)
 
 	// Validate username.
