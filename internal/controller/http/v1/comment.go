@@ -58,7 +58,6 @@ func (c *commentRoutes) deleteReview(w http.ResponseWriter, r *http.Request) {
 
 func (c *commentRoutes) insertReview(w http.ResponseWriter, r *http.Request) {
 	var requestBody entity.CreateReviewRequest
-	c.l.Debug(r.Body)
 	err := json.NewDecoder(r.Body).Decode(&requestBody)
 	if err != nil {
 		c.l.Error(err, "http - v1 - insertReview")
