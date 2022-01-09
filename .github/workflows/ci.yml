@@ -1,5 +1,5 @@
 name: CI
-on: pull_request
+on: push
 
 jobs:
   golangci-lint:
@@ -71,7 +71,7 @@ jobs:
           -coverprofile=coverage.txt \
           ./internal/..."
       - name: Upload coverage report
-        run: bash <(curl -s https://codecov.io/bash)
+        run: bash <(curl -s https://codecov.io/bash) -t 4906d48e-9f6e-451e-aa81-04e1042fe0e3
 
       - name: Integration tests
         run: "docker-compose up \
