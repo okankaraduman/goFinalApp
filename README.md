@@ -8,7 +8,7 @@
 ## 1. Introduction <a name="intr"></a>
 
 In this project I aim to build a microservice. 
-This microservice should be extensible, scalable, cloud-native, containerized, well-tested, monitorable. Project heavily inspired by [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) blog post by Uncle Bob. 
+This microservice should be extensible, scalable, cloud-native, containerized, well-tested, monitorable. Projects architecture heavily inspired by [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) blog post by Uncle Bob. 
 ![Archi](https://blog.cleancoder.com/uncle-bob/images/2012-08-13-the-clean-architecture/CleanArchitecture.jpg)
 
 
@@ -35,16 +35,16 @@ Used docker to create docker image and minikube to implement kubernetes-like ser
 ## 3. Third-party libraries and Architecture </a>
 ### 3.1. Tech Stack
   - Router
-    - (Chi Router)[https://github.com/go-chi/chi]
+    - [Chi Router](https://github.com/go-chi/chi)
   - Database
     - Postgresql
-      - (Pgx Driver)[https://github.com/jackc/pgx]
-      - (Squirrel -  Squirrel helps you build SQL queries from composable parts: )[https://github.com/Masterminds/squirrel]
+      - [Pgx Driver](https://github.com/jackc/pgx)
+      - [Squirrel -  Squirrel helps you build SQL queries from composable parts: ](https://github.com/Masterminds/squirrel)
   - Swagger Documentation
-    - https://github.com/swaggo/swag
+    - [Swaggo] (https://github.com/swaggo/swag)
   - Logging/Monitoring
-    - (Zerolog -  Zero Allocation JSON Logger) [https://github.com/rs/zerolog]
-    - (Prometheus Golang Client)[https://github.com/prometheus/client_golang]
+    - [Zerolog -  Zero Allocation JSON Logger] (https://github.com/rs/zerolog)
+    - [Prometheus Golang Client](https://github.com/prometheus/client_golang)
 ### 3.2. Architecture
 Clean Architecture
 
