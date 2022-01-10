@@ -5,6 +5,7 @@
   - [3.2. Architecture](#32-architecture)
 - [4. Usage Guide </a>](#4-usage-guide-a)
 - [5. Development Notes </a>](#5-development-notes-a)
+- [TO-DO's </a>](#to-dos-a)
 ## 1. Introduction <a name="intr"></a>
 
 In this project I aim to build a microservice. 
@@ -55,3 +56,7 @@ To demonstrate this I'll use this [tool](https://threedots.tech/post/auto-genera
 - It is assumed that default values are in yaml, and security-sensitive variables are defined in ENV.
 - I made a choice about not getting involved to front-end side. 
 - The JSON decoder does not report an error if values in the source do not correspond to values in the target. For example, it's not an error if the source contains the field "status", but the target does not.
+## TO-DO's </a>
+- [ ] Translate the comment before adding/taking to/from database
+- [ ] Correct implementation of yaml/env
+- [ ] Write Usage Guide and test the application using just usage guide
