@@ -32,30 +32,46 @@ func newCommentRoutes(a usecase.Comment, l logger.Interface) http.Handler {
 	return r
 }
 
-// @Summary     Returns all comments
-// @Description Says hello
-// @ID          hello
+// @Summary     Get Reviews
+// @Description Returns all comments
+// @ID          getReviews
 // @Tags  	    comment
 // @Accept      json
 // @Produce     json
 // @Success     200 {array} entity.ReviewDTO
-// @Router      /comment/hello [get]
+// @Router      /v1/comments [get]
 func (c *commentRoutes) getReviews(w http.ResponseWriter, r *http.Request) {
 	//Get All comments
+	arr, err := c.c.TakeReviews()
+	if err != nil {
+		c.l.Error(err, "http - v1 - getReviews")
+		resp := Response{Resp: w}
+		resp.Text(http.StatusInternalServerError, "Get Review service problems", "text/plain")
+
+		return
+	}
+	body, err := json.Marshal(arr)
+	c.l.Debug(arr)
+	if err != nil {
+		c.l.Error(err, "http - v1 - getReviews")
+	}
+
+	resp := Response{Resp: w}
+	resp.Text(http.StatusOK, string(body), "text/json")
+
 }
 func (c *commentRoutes) deleteReview(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("sadas")
 }
 
-// @Summary     creates review
-// @Description Says hello
-// @ID          hello
+// @Summary     Insert Review
+// @Description creates review
+// @ID          insertReview
 // @Tags  	    comment
 // @Accept      json
 // @Produce     json
 // @Success     200 {object} entity.ReviewDTO
-// @Router      /comment/hello [get]
-
+// @Router      /v1/comments [post]
 func (c *commentRoutes) insertReview(w http.ResponseWriter, r *http.Request) {
 	var requestBody entity.CreateReviewRequest
 	err := json.NewDecoder(r.Body).Decode(&requestBody)
@@ -80,7 +96,6 @@ func (c *commentRoutes) insertReview(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		c.l.Error(err, "http - v1 - insertReview")
 	}
-	fmt.Println(string(body))
 
 	resp := Response{Resp: w}
 	resp.Text(http.StatusOK, string(body), "text/json")

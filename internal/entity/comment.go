@@ -13,7 +13,7 @@ type CreateReviewRequest struct {
 }
 
 type Review struct {
-	Id               string `json:"id,omitempty"`
+	Id               string  `json:"id,omitempty"`
 	UserId           int64  `json:"userId,omitempty"`
 	ContentId        string `json:"contentId,omitempty"`
 	ReviewStatus     string `json:"reviewStatus,omitempty"`
@@ -25,7 +25,7 @@ type Review struct {
 }
 
 type ReviewDTO struct {
-	Id        string `json:"id,omitempty"`
+	Id        string  `json:"id,omitempty"`
 	UserId    int64  `json:"userId,omitempty"`
 	ContentId string `json:"contentId,omitempty"`
 	Rate      int    `json:"rate,omitempty"`

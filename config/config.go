@@ -50,7 +50,7 @@ type (
 func NewConfig() (*Config, error) {
 	cfg := &Config{}
 
-	err := cleanenv.ReadConfig("./test.yml", cfg)
+	err := cleanenv.ReadConfig("./config/test.yml", cfg)
 	if err != nil {
 		return nil, fmt.Errorf("config error: %w", err)
 	}

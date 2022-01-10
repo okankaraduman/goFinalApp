@@ -33,7 +33,32 @@ func (c *CommentRepo) InsertReview(ctx context.Context, r entity.Review) error {
 
 	_, err = c.Pool.Exec(ctx, sql, args...)
 	if err != nil {
-		return fmt.Errorf("CommentRepo - InsertReview - c.Pool.Exec: %w", err)
+		return fmt.Errorf("CommentRepo - InsertReview - c.Pool.Exec: %w sql:"+sql, err)
 	}
 	return nil
+}
+func (c *CommentRepo) GetReviews(ctx context.Context) ([]entity.Review, error) {
+	sql, args, err := c.Builder.
+		Select("*").
+		From("Reviews").
+		ToSql()
+	if err != nil {
+		return nil, fmt.Errorf("CommentRepo - GetReviews - c.Builder: %w sql:"+sql, err)
+	}
+	rows, err := c.Pool.Query(ctx, sql, args...)
+	if err != nil {
+		return nil, fmt.Errorf("CommentRepo - GetReviews - c.Pool.Exec: %w sql:"+sql, err)
+	}
+	defer rows.Close()
+	var array []entity.Review
+	for rows.Next() {
+		var temp entity.Review
+		rows.Scan(&temp.Id, &temp.UserId, &temp.ContentId, &temp.ReviewStatus, &temp.Rate, &temp.Comment, &temp.UserName, &temp.CreatedDate, &temp.LastModifiedDate)
+		if err != nil {
+			return nil, fmt.Errorf("CommentRepo - GetReviews - rows.Scan: %w ", err)
+		}
+		array = append(array, temp)
+	}
+
+	return array, nil
 }

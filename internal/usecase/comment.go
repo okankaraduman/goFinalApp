@@ -2,6 +2,7 @@ package usecase
 
 import (
 	"context"
+	"fmt"
 	"time"
 
 	"github.com/google/uuid"
@@ -24,10 +25,12 @@ func New(r CommentRepo, w CommentWebAPI) *CommentUseCase {
 
 func (c *CommentUseCase) CreateReview(request entity.CreateReviewRequest) (*entity.ReviewDTO, error) {
 
+	//TO DO: Translate the comment before inserting to database
 	r := entity.Review{
 		Id:               uuid.New().String(),
 		UserId:           request.UserId,
 		ContentId:        request.ContentId,
+		ReviewStatus:     "true",
 		Rate:             request.Rate,
 		Comment:          request.Comment,
 		UserName:         request.UserName,
@@ -39,11 +42,30 @@ func (c *CommentUseCase) CreateReview(request entity.CreateReviewRequest) (*enti
 	err := c.repo.InsertReview(ctx, r)
 
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("CommentUseCase - CreateReview - s.repo.InsertReview: %w", err)
 	}
 	reviewDTO := convertReview(r)
+	if err != nil {
+		return nil, fmt.Errorf("CommentUseCase - TakeReviews - convertReview: %w", err)
+	}
 
 	return reviewDTO, nil
+}
+func (c *CommentUseCase) TakeReviews() (*[]entity.ReviewDTO, error) {
+	ctx := context.Background()
+	arr, err := c.repo.GetReviews(ctx)
+	if err != nil {
+		return nil, fmt.Errorf("CommentUseCase - TakeReviews - s.repo.GetReviews: %w", err)
+	}
+	var arr_dto []entity.ReviewDTO
+	for i := 0; i < len(arr); i++ {
+		temp := convertReview(arr[i])
+		if err != nil {
+			return nil, fmt.Errorf("CommentUseCase - TakeReviews - convertReview: %w", err)
+		}
+		arr_dto = append(arr_dto, *temp)
+	}
+	return &arr_dto, nil
 }
 
 /*

@@ -13,12 +13,13 @@ type (
 	// Comment -.
 	Comment interface {
 		CreateReview(request entity.CreateReviewRequest) (*entity.ReviewDTO, error)
-		
+		TakeReviews() (*[]entity.ReviewDTO, error)
 	}
 
 	// CommentRepo -.
 	CommentRepo interface {
 		InsertReview(context.Context, entity.Review) error
+		GetReviews(context.Context) ([]entity.Review, error)
 		//reponun içindelileri
 	}
 
