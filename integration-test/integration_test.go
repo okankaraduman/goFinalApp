@@ -15,6 +15,8 @@ const (
 	host       = "app:8080"
 	healthPath = "http://" + host + "/healthz"
 	attempts   = 40
+	// HTTP REST
+	basePath = "http://" + host
 )
 
 func TestMain(m *testing.M) {
@@ -46,4 +48,24 @@ func healthCheck(attempts int) error {
 	}
 
 	return err
+}
+
+// HTTP POST: /v1/comments
+func TestCommentinsertReview(t *testing.T) {
+	body := `{
+		"userID":1,
+		"contentId":"1",
+		"rate":3,
+		"comment":"It was so good, I strongly recommend to order from here!",
+		"userName":"artist_boy_1995"
+	}`
+	Test(t,
+		Description("comment insertReview Success"),
+		Post(basePath+"/v1/comments"),
+		Send().Headers("Content-Type").Add("application/json"),
+		Send().Body().String(body),
+		Expect().Status().Equal(http.StatusOK),
+		Expect().Body().JSON().JQ(".userName").Equal("artist_boy_1995"),
+	)
+
 }
