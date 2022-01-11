@@ -12,7 +12,8 @@ import (
 type (
 	// Comment -.
 	Comment interface {
-		CreateReview(request entity.CreateReviewRequest) (*entity.ReviewDTO, error)
+		CreateReview(entity.CreateReviewRequest) (*entity.ReviewDTO, error)
+		DeleteReview(string) error
 		TakeReviews() (*[]entity.ReviewDTO, error)
 	}
 
@@ -20,7 +21,7 @@ type (
 	CommentRepo interface {
 		InsertReview(context.Context, entity.Review) error
 		GetReviews(context.Context) ([]entity.Review, error)
-		//reponun içindelileri
+		DeleteReview(context.Context, string) error
 	}
 
 	// CommentWebAPI -.

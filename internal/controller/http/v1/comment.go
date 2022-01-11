@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"strings"
 
 	"github.com/okankaraduman/goFinalApp/internal/entity"
 	"github.com/okankaraduman/goFinalApp/internal/usecase"
@@ -46,7 +47,7 @@ func (c *commentRoutes) getReviews(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		c.l.Error(err, "http - v1 - getReviews")
 		resp := Response{Resp: w}
-		resp.Text(http.StatusInternalServerError, "Get Review service problems", "text/plain")
+		resp.Text(http.StatusInternalServerError, "Get Reviews service problems", "text/plain")
 
 		return
 	}
@@ -60,8 +61,30 @@ func (c *commentRoutes) getReviews(w http.ResponseWriter, r *http.Request) {
 	resp.Text(http.StatusOK, string(body), "text/json")
 
 }
+
+// @Summary     Delete Review
+// @Description Deletes comments by its id
+// @ID          deleteReview
+// @Tags  	    comment
+// @Accept      json
+// @Produce     text
+// @Success     200 {text}
+// @Router      /v1/comments/{commentID} [delete]
 func (c *commentRoutes) deleteReview(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("sadas")
+	url := r.URL.Path
+	ourid := strings.SplitN(url, "/", 6)[3]
+	c.l.Debug(ourid)
+
+	err := c.c.DeleteReview(ourid)
+	if err != nil {
+		c.l.Error(err, "http - v1 - deleteReview")
+		resp := Response{Resp: w}
+		resp.Text(http.StatusInternalServerError, "Delete Review service problems", "text/plain")
+
+		return
+	}
+	resp := Response{Resp: w}
+	resp.Text(http.StatusOK, "Resource successfully deleted!", "text/plaing")
 }
 
 // @Summary     Insert Review
