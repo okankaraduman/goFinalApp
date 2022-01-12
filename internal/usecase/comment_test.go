@@ -41,11 +41,19 @@ func TestCreateReview(t *testing.T) {
 
 	tests := []test{
 		{
+			name: "empty result",
+			mock: func() {
+				repo.EXPECT().InsertReview(context.Background(), entity.CreateReviewRequest{}).Return(entity.Review{}, nil)
+			},
+			res: entity.Review{},
+			err: nil,
+		},
+		{
 			name: "result with error",
 			mock: func() {
-				repo.EXPECT().InsertReview(context.Background(), entity.Review{}).Return(errInternalServErr)
+				repo.EXPECT().InsertReview(context.Background(), entity.CreateReviewRequest{}).Return(nil, errInternalServErr)
 			},
-			res: nil,
+			res: entity.Review{},
 			err: errInternalServErr,
 		},
 	}
@@ -58,9 +66,10 @@ func TestCreateReview(t *testing.T) {
 
 			tc.mock()
 
-			_, err := comment.CreateReview(entity.CreateReviewRequest{})
+			res, err := comment.CreateReview(entity.CreateReviewRequest{})
 
-			require.ErrorIs(t, err, tc.err, "The two errors should be the same.")
+			require.Equal(t, res, tc.res)
+			require.ErrorIs(t, err, tc.err)
 		})
 	}
 }

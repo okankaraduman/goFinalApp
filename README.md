@@ -2,7 +2,7 @@
 - [2. Important links](#2-important-links)
 - [3. Third-party libraries and Architecture </a>](#3-third-party-libraries-and-architecture-a)
   - [3.1. Tech Stack](#31-tech-stack)
-  - [3.2. Architecture and Project Layout](#32-architecture-and-project-layout)
+  - [3.2. Architecture](#32-architecture)
 - [4. Usage Guide </a>](#4-usage-guide-a)
 - [5. Development Notes </a>](#5-development-notes-a)
 - [TO-DO's </a>](#to-dos-a)
@@ -46,50 +46,8 @@ Used docker to create docker image and minikube to implement kubernetes-like ser
   - Logging/Monitoring
     - [Zerolog -  Zero Allocation JSON Logger] (https://github.com/rs/zerolog)
     - [Prometheus Golang Client](https://github.com/prometheus/client_golang)
-### 3.2. Architecture and Project Layout
-```
-project    
-└───.github
-│   └───workflows
-│       │   ci.yml #Github Action Pipeline
-└───cmd
-│   └───app
-│        │   main.go # Starting Point
-└───config #reading from yaml&env
-└───docs #Auto generated swagger docs
-└───integration-test
-└───internal
-│   └───app
-│   └───controller
-│       └───http
-│           └───v1
-│               │  router.go
-│               │  comment.go
-│           └───v2
-│               │  xx.go
-│       └───amqp_rpc
-│           │  router.go
-│           │  comment.go
-│   └───entity
-│   └───usecase #Business logic.
-│       │ interfaces.go 
-│       │ comment.go 
-│       │ mocks_test.go 
-│       └───repo #A repository is an abstract storage (database) that business logic works with.
-│           │  comment_postgres.go
-│       └───webapi #It is an abstract web API that business logic works with. 
-│           │  comment_api.go
-│   └───migrations
-│   └───pkg
-│       └───httpserver
-│       └───logger
-│       └───postgres
-│       └───rabbitmq
-│ .env
-│ .Dockerfile
-│ .docker-compose
-
-```
+### 3.2. Architecture
+Clean Architecture
 
 To demonstrate this I'll use this [tool](https://threedots.tech/post/auto-generated-c4-architecture-diagrams-in-go/) that auto-generate architecute.
 ## 4. Usage Guide </a>
@@ -102,4 +60,3 @@ To demonstrate this I'll use this [tool](https://threedots.tech/post/auto-genera
 - [ ] Translate the comment before adding/taking to/from database
 - [ ] Correct implementation of yaml/env
 - [ ] Write Usage Guide and test the application using just usage guide
-- [ ] C4 Diagram generation

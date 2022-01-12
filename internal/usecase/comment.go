@@ -67,13 +67,6 @@ func (c *CommentUseCase) TakeReviews() (*[]entity.ReviewDTO, error) {
 	}
 	return &arr_dto, nil
 }
-func (c *CommentUseCase) DeleteReview(uid string) error {
-	err := c.repo.DeleteReview(context.Background(), uid)
-	if err != nil {
-		return fmt.Errorf("CommentUseCase - DeleteReview - s.repo.DeleteReview: %w", err)
-	}
-	return nil
-}
 
 /*
 // History - getting translate history from store.

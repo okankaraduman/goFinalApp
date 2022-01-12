@@ -37,8 +37,6 @@ func (c *CommentRepo) InsertReview(ctx context.Context, r entity.Review) error {
 	}
 	return nil
 }
-
-// GetReviews -.
 func (c *CommentRepo) GetReviews(ctx context.Context) ([]entity.Review, error) {
 	sql, args, err := c.Builder.
 		Select("*").
@@ -63,22 +61,4 @@ func (c *CommentRepo) GetReviews(ctx context.Context) ([]entity.Review, error) {
 	}
 
 	return array, nil
-}
-
-// DeleteReview -.
-func (c *CommentRepo) DeleteReview(ctx context.Context, uid string) error {
-	sql, args, err := c.Builder.
-		Delete("*").
-		Where("Id=$1", uid).
-		From("Reviews").
-		ToSql()
-	if err != nil {
-		return fmt.Errorf("CommentRepo - DeleteReview - c.Builder: %w sql:"+sql, err)
-	}
-	_, err = c.Pool.Exec(ctx, sql, args...)
-	if err != nil {
-		return fmt.Errorf("CommentRepo - DeleteReview - c.Pool.Exec: %w sql:"+sql, err)
-	}
-
-	return nil
 }
