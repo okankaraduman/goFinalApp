@@ -1,4 +1,4 @@
-module github.com/DevelopmentHiring/OkanKaraduman
+module github.com/okankaraduman/goFinalApp
 
 go 1.17
 

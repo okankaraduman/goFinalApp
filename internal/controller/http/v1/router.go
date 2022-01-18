@@ -57,7 +57,7 @@ func NewRouter(muxChi *chi.Mux, l logger.Interface, c usecase.Comment) {
 		resp.Text(http.StatusOK, "200 OK", "text/plain")
 	})
 	// Prometheus metrics
-	muxChi.Handle("/metrics", promhttp.Handler())
+	muxChi.Handle("/metrics", promhttp.Handler()) 
 
 	// API version 1.
 	muxChi.Route("/v1", func(r chi.Router) {

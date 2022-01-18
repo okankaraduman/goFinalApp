@@ -57,7 +57,7 @@ func (c *commentRoutes) getReviews(w http.ResponseWriter, r *http.Request) {
 	}
 
 	resp := Response{Resp: w}
-	resp.Text(http.StatusOK, string(body), "text/json")
+	resp.Text(http.StatusOK, string(body), "application/json")
 
 }
 func (c *commentRoutes) deleteReview(w http.ResponseWriter, r *http.Request) {
@@ -98,7 +98,7 @@ func (c *commentRoutes) insertReview(w http.ResponseWriter, r *http.Request) {
 	}
 
 	resp := Response{Resp: w}
-	resp.Text(http.StatusOK, string(body), "text/json")
+	resp.Text(http.StatusOK, string(body), "application/json")
 }
 func (c *commentRoutes) updateReview(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("sadas")

@@ -60,3 +60,4 @@ To demonstrate this I'll use this [tool](https://threedots.tech/post/auto-genera
 - [ ] Translate the comment before adding/taking to/from database
 - [ ] Correct implementation of yaml/env
 - [ ] Write Usage Guide and test the application using just usage guide
+- [ ] Implement rabbit mq methods
